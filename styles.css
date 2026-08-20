@@ -1,0 +1,212 @@
+/* =========================================
+   1. VARIABLES & FONTS
+   ========================================= */
+:root {
+    --font-handwriting: 'CustomHandwriting', 'Caveat', cursive, sans-serif;
+    --font-ui: system-ui, -apple-system, sans-serif;
+    --transition-speed: 1.5s; /* Smooth crossfade for theme switching */
+}
+
+/* Custom Local Font Setup */
+@font-face {
+    font-family: 'CustomHandwriting';
+    src: url('custom-font.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Google Font Fallback (Caveat) */
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap');
+
+/* =========================================
+   2. THEMES (7 UNIQUE THEMES)
+   ========================================= */
+/* 1. Cozy Fall (Original) */
+body.theme-fall {
+    --bg-color: #DDCABC;
+    --text-color: #3D2118;
+    --accent-primary: #904913;
+    --accent-secondary: #B97230;
+    --line-color: rgba(147, 99, 66, 0.15);
+}
+
+/* 2. Winter Blue */
+body.theme-winter-blue {
+    --bg-color: #E8F1F5;
+    --text-color: #1A2639;
+    --accent-primary: #005691;
+    --accent-secondary: #4FA9A4;
+    --line-color: rgba(107, 122, 143, 0.15);
+}
+
+/* 3. Midnight */
+body.theme-midnight {
+    --bg-color: #121212;
+    --text-color: #E0E0E0;
+    --accent-primary: #BB86FC;
+    --accent-secondary: #03DAC6;
+    --line-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 4. Garden Green */
+body.theme-garden-green {
+    --bg-color: #E9F5E9;
+    --text-color: #1B4332;
+    --accent-primary: #2D6A4F;
+    --accent-secondary: #52B788;
+    --line-color: rgba(45, 106, 79, 0.15);
+}
+
+/* 5. Pixel Pink */
+body.theme-pixel-pink {
+    --bg-color: #FFE5EC;
+    --text-color: #590D22;
+    --accent-primary: #C9184A;
+    --accent-secondary: #FF4D6D;
+    --line-color: rgba(201, 24, 74, 0.15);
+}
+
+/* 6. Cloudy White */
+body.theme-cloudy-white {
+    --bg-color: #F8F9FA;
+    --text-color: #343A40;
+    --accent-primary: #6C757D;
+    --accent-secondary: #ADB5BD;
+    --line-color: rgba(108, 117, 125, 0.1);
+}
+
+/* 7. Sunset Glow */
+body.theme-sunset-glow {
+    --bg-color: #FAD4C0;
+    --text-color: #4A154B;
+    --accent-primary: #E01A4F;
+    --accent-secondary: #F15946;
+    --line-color: rgba(224, 26, 79, 0.15);
+}
+
+/* =========================================
+   3. GLOBAL SETTINGS & TRANSITIONS
+   ========================================= */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body, html {
+    width: 100%; height: 100%; overflow: hidden;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-ui);
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+/* =========================================
+   4. PASSWORD SCREEN
+   ========================================= */
+#login-screen {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: radial-gradient(circle at center, var(--bg-color) 0%, rgba(0,0,0,0.1) 100%);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 100; transition: opacity 1s ease-in-out, visibility 1s;
+}
+.login-box {
+    text-align: center; padding: 3rem;
+    background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);
+    border-radius: 15px; border: 1px solid var(--line-color);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+.login-box h1 { font-family: var(--font-handwriting); font-size: 3rem; color: var(--accent-primary); margin-bottom: 0.5rem; }
+.login-box p { color: var(--text-color); margin-bottom: 2rem; opacity: 0.8;}
+.input-group { display: flex; gap: 10px; justify-content: center; }
+input[type="password"] {
+    padding: 12px 20px; border-radius: 8px; border: 2px solid var(--accent-secondary);
+    background: transparent; color: var(--text-color); font-size: 1.1rem; outline: none;
+}
+button {
+    padding: 12px 25px; border-radius: 8px; border: none;
+    background-color: var(--accent-primary); color: var(--bg-color);
+    font-size: 1.1rem; font-weight: bold; cursor: pointer;
+}
+#error-msg { color: #d9381e; margin-top: 15px; font-size: 0.9rem; opacity: 1; }
+#error-msg.hidden { opacity: 0; }
+
+/* =========================================
+   5. NOTEBOOK PAGES
+   ========================================= */
+#notebook-container { width: 100vw; height: 100vh; position: relative; z-index: 1; }
+#pages-wrapper { display: flex; height: 100%; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+
+.page {
+    width: 100vw; height: 100vh; overflow-y: auto; padding: 40px 20px;
+    background-color: transparent;
+    background-image: 
+        radial-gradient(circle at 50% 50%, transparent 40%, rgba(0,0,0, 0.03) 150%),
+        repeating-linear-gradient(transparent, transparent 38px, var(--line-color) 38px, var(--line-color) 40px);
+    display: flex; flex-direction: column; align-items: center;
+    transition: background-image var(--transition-speed) ease;
+}
+
+.content { max-width: 800px; width: 100%; margin-top: 20px; position: relative; }
+.page-title {
+    font-family: var(--font-handwriting); font-size: 3.5rem;
+    color: var(--accent-primary); margin-bottom: 20px;
+    border-bottom: 2px dashed var(--accent-secondary); padding-bottom: 10px;
+    transition: color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+}
+.notebook-text {
+    font-family: var(--font-handwriting); font-size: 1.8rem; line-height: 40px;
+    color: var(--text-color); white-space: pre-wrap;
+    transition: color var(--transition-speed) ease;
+}
+.swipe-hint { text-align: center; margin-top: 50px; font-size: 0.9rem; opacity: 0.5; }
+
+/* =========================================
+   6. MUSIC PLAYER
+   ========================================= */
+.music-player-container {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.music-player {
+    background: transparent;
+    border: 2px solid var(--text-color); 
+    border-radius: 20px;
+    padding: 30px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    font-family: var(--font-ui);
+    box-shadow: 4px 4px 0px var(--line-color);
+    transition: border-color var(--transition-speed) ease;
+}
+
+.song-info { margin-bottom: 25px; }
+.song-title { font-size: 1.4rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: var(--text-color); }
+.song-artist { font-size: 0.9rem; text-transform: uppercase; opacity: 0.7; margin-top: 5px; color: var(--text-color); }
+.song-duration { font-size: 0.8rem; font-weight: bold; margin-top: 5px; color: var(--accent-primary); }
+
+.player-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.player-controls i {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: transform 0.2s, color 0.3s;
+}
+
+.player-controls i:hover { color: var(--accent-primary); transform: scale(1.1); }
+.player-controls i:active { transform: scale(0.9); }
+.player-controls .fa-circle-play, .player-controls .fa-circle-pause { font-size: 2.5rem; }
+
+/* =========================================
+   7. AUDIO VISUALIZER
+   ========================================= */
+#visualizer {
+    position: fixed; top: 50%; left: 0; transform: translateY(-50%);
+    width: 100vw; height: 300px; z-index: 10; pointer-events: none; opacity: 0.4;
+}

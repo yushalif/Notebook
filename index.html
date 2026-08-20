@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Cozy Fall Notebook</title>
+    <!-- FontAwesome for Music Player Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="theme-fall"> <!-- Default starting theme -->
+
+    <!-- Single Audio Element for the whole app -->
+    <audio id="bg-audio" preload="metadata"></audio>
+
+    <!-- Password Screen -->
+    <div id="login-screen">
+        <div class="login-box">
+            <h1>A Cozy Place</h1>
+            <p>Enter the password to open the notebook.</p>
+            <div class="input-group">
+                <input type="password" id="password-input" placeholder="Hint: autumn">
+                <button id="submit-btn">Open</button>
+            </div>
+            <p id="error-msg" class="hidden">Incorrect password. Try again.</p>
+        </div>
+    </div>
+
+    <!-- Audio Visualizer Canvas -->
+    <canvas id="visualizer"></canvas>
+
+    <!-- Multi-page Notebook Container (Injected via JS) -->
+    <div id="notebook-container">
+        <div id="pages-wrapper">
+            <!-- JavaScript will automatically inject ALL pages and the music player here -->
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
