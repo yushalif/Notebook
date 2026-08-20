@@ -24,14 +24,14 @@ Yusha",
         {
             title: "August 22nd",
             text: "",
-            theme: "theme-winter-blue",
+            theme: "theme-fall",
             hasPlayer: true,  // The music player will appear at the bottom of this page
             hasTyped: false
         },
         {
             title: "August 23rd",
             text: "",
-            theme: "theme-midnight",
+            theme: "theme-fall",
             hasPlayer: true,
             hasTyped: false
         }
