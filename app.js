@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Add your songs here. The script reads the actual file metadata to find the duration.
     const playlist = [
-        { src: 'inthepool.mp3', title: 'In The Pool', artist: 'Unknown Artist' },
-        { src: 'blue.mp3', title: 'Blue', artist: 'Unknown Artist' },
+        { src: 'inthepool.mp3', title: 'In The Pool', artist: 'kensuke ushio' },
+        { src: 'blue.mp3', title: 'Blue', artist: 'YUNG KAI' },
         { src: 'song3.mp3', title: 'Autumn Leaves', artist: 'Cozy Band' }
     ];
 
