@@ -8,14 +8,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const playlist = [
         { src: 'inthepool.mp3', title: 'In The Pool', artist: 'kensuke ushio' },
         { src: 'blue.mp3', title: 'Blue', artist: 'YUNG KAI' },
-        { src: 'song3.mp3', title: 'Autumn Leaves', artist: 'Cozy Band' }
     ];
 
     // Add your pages here. Choose a theme and set hasPlayer: true to inject the music player.
     const notebookPages = [
         {
             title: "August 21st",
-            text: "Something to paste here...",
+            text: "Happy birthday baby. As you reach this, you are probably very mad and upset by how I made you go through your whole day before your birthday. I'm really sorry for how it went for you and I know you had a lot to say to me the other night and even today. But as you can see I really needed to focus on this because I wanted to give you something that I put genuine effort like you always do with with your gifts. I know my first letter that I gave to you was utterly trash. And I wanted to make up for it by giving this. As you read this I probably haven't even had dinner. I skipped lunch today to go to tuition early and come back home early to work on this. Even as you read this, this webpage is not even complete. I wanted to do way more but I just didnt get enough time to do that.",
             theme: "theme-fall",
             hasPlayer: true, // No player on page 1
             hasTyped: false 
