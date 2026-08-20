@@ -14,24 +14,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add your pages here. Choose a theme and set hasPlayer: true to inject the music player.
     const notebookPages = [
         {
-            title: "September 14th",
-            text: "Hi baby. The cabin smells of pine and old paper today. I watched the rain tracing paths along the windowpane for hours, mesmerized by the rhythm. There is something profoundly healing about the isolation of autumn. The way the leaves surrender to the wind, turning a vibrant, fiery rust before they hit the damp earth. It reminds me that letting go can be beautiful too.",
+            title: "August 21st",
+            text: "Something to paste here...",
             theme: "theme-fall",
-            hasPlayer: false, // No player on page 1
+            hasPlayer: true, // No player on page 1
             hasTyped: false 
         },
         {
-            title: "September 15th",
-            text: "The rain hasn't stopped. I found an old photograph tucked between the floorboards today. The music playing in the background makes the memories flood back in.",
+            title: "August 22nd",
+            text: "",
             theme: "theme-winter-blue",
             hasPlayer: true,  // The music player will appear at the bottom of this page
             hasTyped: false
         },
         {
-            title: "September 20th",
-            text: "The sky finally cleared. The world feels a little brighter today.",
+            title: "August 23rd",
+            text: "",
             theme: "theme-midnight",
-            hasPlayer: false,
+            hasPlayer: true,
             hasTyped: false
         }
     ];
