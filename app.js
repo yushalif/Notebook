@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('submit-btn').addEventListener('click', handleLogin);
     function handleLogin() {
         const pass = document.getElementById('password-input').value.toLowerCase().trim();
-        if (pass === 'autumn' || pass === 'cozy') {
+        if (pass === 'sandler' || pass === 'Sandler') {
             
             // Start Music
             loadTrack(0); 
