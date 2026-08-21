@@ -3,7 +3,7 @@
    ========================================= */
 :root {
     --font-handwriting: 'CustomHandwriting', 'Caveat', cursive, sans-serif;
-    --font-ui: system-ui, -apple-system, sans-serif;
+    --font-ui: 'CustomHandwriting', 'Caveat', system-ui, -apple-system, sans-serif;
     --transition-speed: 1.5s; /* Smooth crossfade for theme switching */
 }
 
