@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { src: 'getyouthemoon.mp3', title: 'Get You The Moon', artist: 'Kina' },
     { src: 'dieforyou.mp3', title: 'Die For You', artist: 'Joji' }
     { src: 'inthepool.mp3', title: 'In The Pool', artist: 'kensuke ushio' },
-    { src: 'blue.mp3', title: 'Blue', artist: 'YUNG KAI' },
+    { src: 'blue.mp3', title: 'Blue', artist: 'YUNG KAI' }
     ];
 
     // Add your pages here. Choose a theme and set hasPlayer: true to inject the music player.
