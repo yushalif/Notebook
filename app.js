@@ -6,8 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Add your songs here. The script reads the actual file metadata to find the duration.
     const playlist = [
-    { src: 'inthepool.mp3', title: 'In The Pool', artist: 'kensuke ushio' },
-    { src: 'blue.mp3', title: 'Blue', artist: 'YUNG KAI' },
     { src: 'older.mp3', title: 'Older', artist: 'Sasha Sloan' },
     { src: 'hello.mp3', title: 'Hello', artist: 'Conor Maynard' },
     { src: 'gluesong.mp3', title: 'Glue Song', artist: 'beabadoobee' },
@@ -18,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
     { src: 'dancingwithyourghost.mp3', title: 'Dancing With Your Ghost', artist: 'Sasha Sloan' },
     { src: 'getyouthemoon.mp3', title: 'Get You The Moon', artist: 'Kina' },
     { src: 'dieforyou.mp3', title: 'Die For You', artist: 'Joji' }
+    { src: 'inthepool.mp3', title: 'In The Pool', artist: 'kensuke ushio' },
+    { src: 'blue.mp3', title: 'Blue', artist: 'YUNG KAI' },
     ];
 
     // Add your pages here. Choose a theme and set hasPlayer: true to inject the music player.
