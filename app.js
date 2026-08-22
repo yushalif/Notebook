@@ -56,137 +56,145 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentPage = 1;
     const totalPages = notebookPages.length;
 
-    // --- A. DYNAMIC PAGE GENERATOR ---
-    function buildNotebook() {
-        pagesWrapper.style.width = `${totalPages * 100}vw`;
+ // --- A. DYNAMIC PAGE GENERATOR ---
+function buildNotebook() {
+    pagesWrapper.style.width = `${totalPages * 100}vw`;
 
-        notebookPages.forEach((pageData, index) => {
-            const section = document.createElement('section');
-            section.className = 'page';
-            
-            let playerHTML = '';
-            if (pageData.hasPlayer) {
-                // Exact layout referencing image_1c3d68.png (No progress bar)
-                playerHTML = `
-                    <div class="music-player-container" id="player-container-${index}">
-                        <div class="music-player">
-                            <div class="song-info">
-                                <div class="song-title" id="ui-title">SONG TITLE</div>
-                                <div class="song-artist" id="ui-artist">ARTIST NAME</div>
-                                <div class="song-duration" id="ui-duration">--:--</div>
-                            </div>
-                            <div class="player-controls">
-                                <i class="fa-solid fa-shuffle" id="btn-shuffle"></i>
-                                <i class="fa-solid fa-backward-step" id="btn-prev"></i>
-                                <i class="fa-solid fa-circle-play" id="btn-play-pause"></i>
-                                <i class="fa-solid fa-forward-step" id="btn-next"></i>
-                                <i class="fa-solid fa-rotate-right" id="btn-repeat"></i>
-                            </div>
+    notebookPages.forEach((pageData, index) => {
+        const section = document.createElement('section');
+        section.className = 'page';
+        
+        let playerHTML = '';
+        if (pageData.hasPlayer) {
+            // Uses classes instead of duplicate IDs so every page works
+            playerHTML = `
+                <div class="music-player-container">
+                    <div class="music-player">
+                        <div class="song-info">
+                            <div class="song-title ui-title">SONG TITLE</div>
+                            <div class="song-artist ui-artist">ARTIST NAME</div>
+                            <div class="song-duration ui-duration">--:--</div>
+                        </div>
+                        <div class="player-controls">
+                            <i class="fa-solid fa-shuffle btn-shuffle"></i>
+                            <i class="fa-solid fa-backward-step btn-prev"></i>
+                            <i class="fa-solid fa-circle-play btn-play-pause"></i>
+                            <i class="fa-solid fa-forward-step btn-next"></i>
+                            <i class="fa-solid fa-rotate-right btn-repeat"></i>
                         </div>
                     </div>
-                `;
-            }
-
-            const swipeHintHTML = index < (totalPages - 1) 
-                ? `<div class="swipe-hint">Swipe right to read more</div>` 
-                : `<div class="swipe-hint">End of entries.</div>`;
-
-            section.innerHTML = `
-                <div class="content">
-                    <h2 class="page-title">${pageData.title}</h2>
-                    <p class="notebook-text" id="text-page-${index}"></p>
-                    ${playerHTML}
-                    ${swipeHintHTML}
                 </div>
             `;
-            pagesWrapper.appendChild(section);
-        });
+        }
 
-        // Attach event listeners to the player if it was created
-        if(document.getElementById('btn-play-pause')) attachPlayerEvents();
-    }
-    buildNotebook();
+        const swipeHintHTML = index < (totalPages - 1) 
+            ? `<div class="swipe-hint">Swipe right to read more</div>` 
+            : `<div class="swipe-hint">End of entries.</div>`;
 
-    // --- B. MUSIC PLAYER LOGIC ---
-    function loadTrack(index) {
-        currentTrackIndex = index;
-        audioEl.src = playlist[currentTrackIndex].src;
-        updatePlayerUI();
-    }
-
-    // Read metadata automatically to get exact duration
-    audioEl.addEventListener('loadedmetadata', () => {
-        const minutes = Math.floor(audioEl.duration / 60);
-        const seconds = Math.floor(audioEl.duration % 60).toString().padStart(2, '0');
-        const durationStr = `${minutes}:${seconds}`;
-        
-        const uiDuration = document.getElementById('ui-duration');
-        if(uiDuration) uiDuration.innerText = durationStr;
+        section.innerHTML = `
+            <div class="content">
+                <h2 class="page-title">${pageData.title}</h2>
+                <p class="notebook-text" id="text-page-${index}"></p>
+                ${playerHTML}
+                ${swipeHintHTML}
+            </div>
+        `;
+        pagesWrapper.appendChild(section);
     });
 
-    function updatePlayerUI() {
-        const titleEl = document.getElementById('ui-title');
-        const artistEl = document.getElementById('ui-artist');
-        
-        if (titleEl && artistEl) {
-            titleEl.innerText = playlist[currentTrackIndex].title;
-            artistEl.innerText = playlist[currentTrackIndex].artist;
-        }
-        updatePlayPauseButton();
-    }
+    // Attach listeners to all generated player controls
+    attachPlayerEvents();
+}
+buildNotebook();
+   // --- B. MULTI-PLAYER MUSIC LOGIC ---
+function loadTrack(index) {
+    currentTrackIndex = index;
+    audioEl.src = playlist[currentTrackIndex].src;
+    updatePlayerUI();
+}
 
-    function updatePlayPauseButton() {
-        const playBtn = document.getElementById('btn-play-pause');
-        if(!playBtn) return;
-        
+// Sync duration on ALL active player cards
+audioEl.addEventListener('loadedmetadata', () => {
+    const minutes = Math.floor(audioEl.duration / 60);
+    const seconds = Math.floor(audioEl.duration % 60).toString().padStart(2, '0');
+    const durationStr = `${minutes}:${seconds}`;
+    
+    document.querySelectorAll('.ui-duration').forEach(el => {
+        el.innerText = durationStr;
+    });
+});
+
+// Sync track titles and artists across ALL active player cards
+function updatePlayerUI() {
+    document.querySelectorAll('.ui-title').forEach(el => {
+        el.innerText = playlist[currentTrackIndex].title;
+    });
+    document.querySelectorAll('.ui-artist').forEach(el => {
+        el.innerText = playlist[currentTrackIndex].artist;
+    });
+    updatePlayPauseButton();
+}
+
+// Sync play/pause icons across ALL player instances
+function updatePlayPauseButton() {
+    document.querySelectorAll('.btn-play-pause').forEach(btn => {
         if (audioEl.paused) {
-            playBtn.classList.remove('fa-circle-pause');
-            playBtn.classList.add('fa-circle-play');
+            btn.classList.remove('fa-circle-pause');
+            btn.classList.add('fa-circle-play');
         } else {
-            playBtn.classList.remove('fa-circle-play');
-            playBtn.classList.add('fa-circle-pause');
+            btn.classList.remove('fa-circle-play');
+            btn.classList.add('fa-circle-pause');
         }
-    }
+    });
+}
 
-    function attachPlayerEvents() {
-        document.getElementById('btn-play-pause').addEventListener('click', () => {
+function attachPlayerEvents() {
+    // Play/Pause
+    document.querySelectorAll('.btn-play-pause').forEach(btn => {
+        btn.addEventListener('click', () => {
             if (audioEl.paused) audioEl.play();
             else audioEl.pause();
             updatePlayPauseButton();
         });
+    });
 
-        document.getElementById('btn-next').addEventListener('click', () => {
+    // Next Track
+    document.querySelectorAll('.btn-next').forEach(btn => {
+        btn.addEventListener('click', () => {
             currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
             loadTrack(currentTrackIndex);
             audioEl.play();
         });
+    });
 
-        document.getElementById('btn-prev').addEventListener('click', () => {
+    // Previous Track
+    document.querySelectorAll('.btn-prev').forEach(btn => {
+        btn.addEventListener('click', () => {
             currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length;
             loadTrack(currentTrackIndex);
             audioEl.play();
         });
-
-        // Basic toggle visual feedback for shuffle/repeat (Logic can be expanded later)
-        document.getElementById('btn-shuffle').addEventListener('click', (e) => {
-            e.target.style.color = e.target.style.color === 'var(--accent-primary)' ? 'var(--text-color)' : 'var(--accent-primary)';
-        });
-        document.getElementById('btn-repeat').addEventListener('click', (e) => {
-            e.target.style.color = e.target.style.color === 'var(--accent-primary)' ? 'var(--text-color)' : 'var(--accent-primary)';
-            audioEl.loop = !audioEl.loop;
-        });
-    }
-
-    audioEl.addEventListener('ended', () => {
-        if (!audioEl.loop) {
-            currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
-            loadTrack(currentTrackIndex);
-        }
-        audioEl.play();
     });
 
-    audioEl.addEventListener('play', updatePlayPauseButton);
-    audioEl.addEventListener('pause', updatePlayPauseButton);
+    // Shuffle Icon Toggle
+    document.querySelectorAll('.btn-shuffle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.btn-shuffle').forEach(b => {
+                b.style.color = b.style.color === 'var(--accent-primary)' ? 'var(--text-color)' : 'var(--accent-primary)';
+            });
+        });
+    });
+
+    // Repeat Toggle
+    document.querySelectorAll('.btn-repeat').forEach(btn => {
+        btn.addEventListener('click', () => {
+            audioEl.loop = !audioEl.loop;
+            document.querySelectorAll('.btn-repeat').forEach(b => {
+                b.style.color = audioEl.loop ? 'var(--accent-primary)' : 'var(--text-color)';
+            });
+        });
+    });
+}
 
     // --- C. TYPEWRITER & TIMING ---
     function typeWriterEffect(element, text, targetDurationMs = null) {
