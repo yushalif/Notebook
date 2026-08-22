@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             title: "August 22nd",
-            text: "",
+            text: "I just went to your birthday and came back. I dont know when is the next time you are gonna open this. Maybe you didn't really like it. I even told you that I changed the password. I hated how everyone turned your birthday about themeselves, that was just so damn horrible. It was unfair. I was wondering where the foam inside the ring box went. Did you lose it? I wasn't done giving you all the gifts, I just didnt get the chance to give you the main thing. But I left it in the ring box. I hope your like it. It's not expensive but I did walk 20,000 steps to go find a one that I wanted to give to you. Everything else looked ugly to me. I wish I could give it to you personally, and put it on your finger. But maybe next time. Until come home, this is your notebook where I write my things for you to descover on random days. I love you so much. Cupcake birthdays are better because only 2 people can wholeheartedly enjoy it. and I'm all for it. Anyways, I hope you like your gift :)",
             theme: "theme-fall",
             hasPlayer: true,  // The music player will appear at the bottom of this page
             hasTyped: false
