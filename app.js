@@ -37,9 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
             hasTyped: false
         },
         {
-            title: "August 23rd",
-            text: "",
-            theme: "theme-fall",
+            title: "September 1st",
+            text: "I don't know but something feels heavy. It's like I changed places with you. You're acting different and don't have anything to say of it. It's like you permanently changed. You're only replying and not really talking to me. What's worse is that I sound like how you used to sound like and you sound like me when I used to have nothing to say. Everything is feeling different and I don't know where everything is heading but I hope it turns out good for the better. I hope you can find comfort and ease within me so that you start sharing things with me again. I don't know anything. I am feeling so lost and I don't know what to do. I hope you're keeping up with your studies well and hope you can buy yourself the things you said you can. I don't know what you mean by those. But I just feel like I'm not needed. I know I get busy and can't give you time but things turned out the way that you don't really seem to want me around. I don't feel wanted nor needed :). When will I things turn out for the better I don't know. But I love you a lot. That's all I can say.",
+            theme: "theme-winter",
             hasPlayer: true,
             hasTyped: false
         }
