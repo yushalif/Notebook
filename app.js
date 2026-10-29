@@ -43,6 +43,13 @@ document.addEventListener('DOMContentLoaded', () => {
             hasPlayer: true,
             hasTyped: false
         }
+        {
+            title: "October 30th",
+            text: "I don't even know what to write here anymore. You and I are not together for a month now. I may not really be able to ever feel any warmth of your love ever again. I really do want you back but, you were suffering while being with me. You found someone. Idk if you lke him or just talk to him. You said you wouldn't leave me. and yet you left me. I don't even know if I will ever have the opportunity to see your face. I'm ashamed to call you. I don't feel like living. I am trying so hard to fill up that void. I really miss you. I'm really sorry. I'm just emotionally very broken. I need you so much but I have to live like this for probably the rest of my life. I don't think I will survive. I wished you'd just come back. but you don't seem to care at all about me. You don't even say my name. Why does everyone leave me. Why does my emotions always get left unaddressed. Why do my emotions not matter to anyone. Why does everyone just leave me alone? Why is it when I am weak no one sees a damn thing? Nobody sees anything. I don't like being the strong man. Whenever I am weak that's when they all end up leaving me. I just wished you would have stayed. I don't know how I am suppose deal with this.",
+            theme: "theme-winter",
+            hasPlayer: true,
+            hasTyped: false
+        }
     ];
 
     // ==========================================
